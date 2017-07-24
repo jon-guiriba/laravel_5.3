@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use App\Models\Test;
+use App\Models\Event;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
     {
         return view('calendar');
     }
+
     /**
      * Show the application dashboard.
      *
@@ -36,6 +38,17 @@ class HomeController extends Controller
     {
         $tests = Test::all();
         return view('test')->with(compact('tests'));
+    }  
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventListings()
+    {
+        $events = Event::all();
+        return view('eventListings')->with(compact('events'));
     }  
 
     /**

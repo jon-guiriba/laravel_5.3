@@ -7,9 +7,9 @@ $(document).ready(function() {
         resetModal();
     })
 
-    $('#date').datetimepicker({format: 'D MMM, Y'});
-    $('#time').datetimepicker({format: 'LT'});
-    $('#preparationTime').datetimepicker({format: 'LT'});
+    $('#eventModal input[name=date]').datetimepicker({format: 'D MMM, Y'});
+    $('#eventModal input[name=time]').datetimepicker({format: 'LT'});
+    $('#eventModal input[name=preparationTime]').datetimepicker({format: 'LT'});
 });
 
 function resetModal(){
@@ -19,17 +19,17 @@ function resetModal(){
 }
 
 function initAddEventFab(){
-    $( "#addEventButton" ).click(function() {
+      $("#addEventButton" ).click(function() {
       $("#eventModal form").trigger('reset');
-      $('#eventModal .modal-title').text('Add Booking');
       $('#eventModal form').attr('action', addEventUrl);
-      $('#deleteEventButton').hide();
+      $('#eventModal .modal-title').text('Add Booking');
+      $('#eventModal #deleteEventButton').hide();
       $('#status-form-group').hide();
     });
 }
 
 function initDeleteEvent(){
-    $( "#deleteEventButton" ).click(function() {
+      $("#eventModal #deleteEventButton" ).click(function() {
       $('#eventModal form').attr('action', deleteEventUrl);
       $('#eventModal form').submit();
     });
@@ -72,18 +72,18 @@ function initFullCalendar() {
         }
         ],
         eventClick: function(calEvent, jsEvent, view) {
-            $("#eventModal #id").val(calEvent.data.id);
-            $("#eventModal #event").val(calEvent.data.event);
-            $("#eventModal #date").val(calEvent.data.date);
-            $("#eventModal #time").val(calEvent.data.time);
-            $("#eventModal #preparationVenue").val(calEvent.data.preparation_venue);
-            $("#eventModal #noOfHeads").val(calEvent.data.no_of_heads);
-            $("#eventModal #preparationTime").val(calEvent.data.preparation_time);
-            $("#eventModal #client").val(calEvent.data.client);
-            $("#eventModal #mobile").val(calEvent.data.mobile);
-            $("#eventModal #email").val(calEvent.data.email);
-            $("#eventModal #message").val(calEvent.data.message);
-            $("#eventModal #status").val(calEvent.data.status);
+            $("#eventModal input[name=id]").val(calEvent.data.id);
+            $("#eventModal input[name=event]").val(calEvent.data.event);
+            $("#eventModal input[name=date]").val(calEvent.data.date);
+            $("#eventModal input[name=time]").val(calEvent.data.time);
+            $("#eventModal input[name=preparationVenue]").val(calEvent.data.preparation_venue);
+            $("#eventModal input[name=noOfHeads]").val(calEvent.data.no_of_heads);
+            $("#eventModal input[name=preparationTime]").val(calEvent.data.preparation_time);
+            $("#eventModal input[name=client]").val(calEvent.data.client);
+            $("#eventModal input[name=mobile]").val(calEvent.data.mobile);
+            $("#eventModal input[name=email]").val(calEvent.data.email);
+            $("#eventModal input[name=message]").val(calEvent.data.message);
+            $("#eventModal input[name=status]").val(calEvent.data.status);
 
             $('#eventModal form').attr('action', updateEventUrl);
 

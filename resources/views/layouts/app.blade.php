@@ -20,19 +20,19 @@
     <link href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.structure.css')}}" rel="stylesheet">
     <link href="{{ asset('jquery-ui-1.12.1.custom/jquery-ui.theme.css')}}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-datetimepicker.css')}}" rel="stylesheet">
-        
+    <link href="{{ asset('DataTables/datatables.min.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('DataTables/DataTables-1.10.15/css/jquery.dataTables.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('DataTables/DataTables-1.10.15/css/dataTables.bootstrap.min.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
     <!--Import scripts-->
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    
-    <!--Custom styles-->
-    <link href="{{ asset('fullcalendar-3.4.0/fullcalendar-custom.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    
-    <!--Custom scripts-->
     <script src="{{asset('js/calendar.js')}}"></script>
+    <script src="{{asset('js/eventListings.js')}}"></script>
+
 
 </head>
 <body>
@@ -46,9 +46,11 @@
     </div>
 
     <!-- Late loading Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('fullcalendar-3.4.0/fullcalendar.js')}}"></script>
     <script src="{{asset('jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
     <script src="{{asset('js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{asset('DataTables/datatables.min.js')}}"></script>
+
 </body>
 </html>
