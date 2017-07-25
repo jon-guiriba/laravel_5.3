@@ -61,9 +61,9 @@ class HomeController extends Controller
       $images = Input::file('images');
         if($images){
             foreach($images as $image){
-                $test = new Test;
-                $test->image = base64_encode(file_get_contents($image->getRealPath()));
-                $test->mimeType = File::mimeType($image->getRealPath());
+                $test = Event::find(1);
+                $test->image_data = base64_encode(file_get_contents($image->getRealPath()));
+                $test->image_mime_type = File::mimeType($image->getRealPath());
                 try { 
                   $test->save();   
                 } catch(QueryException $ex){ 

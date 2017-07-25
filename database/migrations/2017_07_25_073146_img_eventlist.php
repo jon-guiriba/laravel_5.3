@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateEventsTable extends Migration
+class ImgEventlist extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class UpdateEventsTable extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->string('link');
-            $table->string('ticket_type');
+            $table->string('image_mime_type');
+            $table->binary('image_data');
         });
     }
 
