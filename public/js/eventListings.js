@@ -7,39 +7,34 @@ $(document).ready(function() {
         format: 'LT'
     });
 
-    $("#eventListingsTable").DataTable({
-        columnDefs: [{
-            "type": "html-input",
-            "targets": [3, 4]
-        }]
-    });
+    initDataTable();
 
-    $.fn.dataTableExt.ofnSearch['html-input'] = function(value) {
-        return $(value).val();
-    };
 
-    $("#eventListingsTable td input").on('change', function() {
-        var $td = $(this).parent();
-        $td.find('input').attr('value', this.value);
-        table.cell($td).invalidate().draw();
-    });
 
 });
 
 function initMap() {
-    var geocoder = new google.maps.Geocoder();
-    var map = new google.maps.Map($("#venueMap"), {
-          zoom: 4,
-          center: {lat: 0, lng: 0}
-        });
-    var venue = $("#eventListingsTable [name='venue']").val();
+    console.log("initMap");
 
-    /*geocoder.geocode( { 'address': venue}, function(results, status) {
+    $('#eventListingsTable > tbody  > tr > td > div').each(function() {
+    console.log($(this));
+
+    var geocoder = new google.maps.Geocoder();
+    var venue = "Quezon City";
+    var pwet = {lat: -25.363, lng: 131.044};
+    var dom = this;
+    console.log(dom.id);
+    var map = new google.maps.Map(document.getElementById(dom.id), {
+          zoom: 4,
+          center: pwet
+    });
+
+    geocoder.geocode( { 'address': venue}, function(results, status) {
       if (status == 'OK') {
         console.log(venue);
         console.log(results);
         console.log(status);
-
+       
         var coordinates = results[0].geometry.location;
 
         map.setCenter(coordinates);
@@ -51,6 +46,33 @@ function initMap() {
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
-    });*/
+    });
 
+    });
+
+    
+
+}
+
+function initDataTable(){
+    $("#eventListingsTable").DataTable({
+        columnDefs: [{
+            "type": "html-input",
+            "targets": [3, 4]
+        }]
+    });
+
+    applyInputSearchFix();
+}
+
+function applyInputSearchFix(){
+    $.fn.dataTableExt.ofnSearch['html-input'] = function(value) {
+        return $(value).val();
+    };
+
+    $("#eventListingsTable td input").on('change', function() {
+        var $td = $(this).parent();
+        $td.find('input').attr('value', this.value);
+        table.cell($td).invalidate().draw();
+    });
 }

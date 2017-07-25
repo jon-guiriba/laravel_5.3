@@ -16,8 +16,6 @@ class UpdateEventsTable2 extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->string('link');
             $table->string('ticket_type');
-            $table->string('image_mime_type');
-            $table->blob('image_data');
         });
     }
 
