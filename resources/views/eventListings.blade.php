@@ -13,11 +13,12 @@
 				<th>Venue</th>
 				<th>Link</th>
 				<th>Ticket</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			@if ($events)
-            	@foreach($events as $event)
+            	@foreach($events as $i => $event)
             		<tr>
             			<td>{{$event->id}}</td>
             			<td>
@@ -33,7 +34,7 @@
             			</td>
             			<td>
             				<input type="hidden" name="venue" value="{{$event->preparation_venue}}">
-            				<div id="venueMap" class="map-normal"></div>
+            				<div id="venueMap{{$i}}" class="map-normal"></div>
             			</td>
             			<td><a class="btn btn-success" href="{{$event->link}}">Link</a></td>
             			<td>
@@ -42,6 +43,9 @@
 							    <option value="door_sales" {{$event->ticket_type === 'door_sales' ? 'selected' : '' }}>Door Sale</option>
 							    <option value="buy_online" {{$event->buy_online === 'free' ? 'selected' : '' }}>Buy Online</option>
   							</select>
+  						</td>
+  						<td>
+  							<button><span class=""></span></button>
   						</td>
             		</tr>
             	@endforeach
