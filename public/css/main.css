@@ -164,3 +164,7 @@
   width: 125px;
   height: 125px;
 }
+
+.dz-progress, .dz-upload, .dz-error-message, .dz-success-mark, .dz-error-mark{
+  display: none;
+}
