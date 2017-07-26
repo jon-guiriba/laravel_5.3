@@ -31,8 +31,12 @@
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <!--<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdsdK5dBOJZBEyTDcbYv6Sjqhk_CTl4UY&callback=initMap">-->
+    </script>
     <script src="{{asset('js/calendar.js')}}"></script>
     <script src="{{asset('js/eventListings.js')}}"></script>
+    <script src="{{asset('js/albums.js')}}"></script>
 
 
 </head>
@@ -41,6 +45,7 @@
             var addEventUrl = "{{route('addEvent')}}";
             var updateEventUrl = "{{route('updateEvent')}}";
             var deleteEventUrl = "{{route('deleteEvent')}}";
+            var uploadAlbumUrl = "{{route('testUpload')}}";
     </script>
     <div id="app">
         @yield('content')
@@ -52,7 +57,8 @@
     <script src="{{asset('jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
     <script src="{{asset('js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{asset('DataTables/datatables.min.js')}}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdsdK5dBOJZBEyTDcbYv6Sjqhk_CTl4UY&callback=initMap"></script>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdsdK5dBOJZBEyTDcbYv6Sjqhk_CTl4UY&callback=initMap"></script>-->
+    <script src="{{asset('js/dropzone.js')}}"></script>
     
 </body>
 </html>

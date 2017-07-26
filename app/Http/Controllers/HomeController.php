@@ -61,7 +61,7 @@ class HomeController extends Controller
       $images = Input::file('images');
         if($images){
             foreach($images as $image){
-                $test = Event::find(1);
+                $test = new Test;
                 $test->image_data = base64_encode(file_get_contents($image->getRealPath()));
                 $test->image_mime_type = File::mimeType($image->getRealPath());
                 try { 
