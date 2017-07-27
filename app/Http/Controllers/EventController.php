@@ -8,6 +8,7 @@ use App\Http\Commands\AddEventCommand;
 use App\Http\Commands\UpdateEventCommand;
 use App\Http\Commands\DeleteEventCommand;
 use App\Models\Event;
+use App\Dao\ImageDao;
 
 class EventController extends Controller
 {
@@ -18,6 +19,7 @@ class EventController extends Controller
      */
     public function __construct()
     {
+        
     }
 
     /**

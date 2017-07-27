@@ -13,3 +13,6 @@
 @include('modals.eventModal')
 @endsection
 
+@section('page-scripts')
+    <script src="{{asset('js/calendar.js')}}"></script>
+@stop

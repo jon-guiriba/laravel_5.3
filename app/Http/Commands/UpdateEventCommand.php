@@ -2,9 +2,10 @@
 
 namespace App\Http\Commands;
 
-use App\iCommand;
+use App\Infrastructure\command\iCommand;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Dao\EventDao;
 
 
 class UpdateEventCommand implements iCommand
@@ -16,30 +17,20 @@ class UpdateEventCommand implements iCommand
 
 	public function execute(){
 
-        $event = $this->bind($this->request);
-
-	    try { 
-	      $event->save();   
-	    } catch(QueryException $ex){ 
-	      return back();
-	    }
-	}
-
-	private function bind(Request $request){
-        $event = Event::find($request->input('id'));
+        $event = Event::find($this->request->input('id'));
         
-        $event->event = $request->input('event');
-        $event->date = $request->input('date');
-        $event->time = $request->input('time');
-        $event->preparation_venue = $request->input('preparationVenue');
-        $event->no_of_heads = $request->input('noOfHeads');
-        $event->preparation_time = $request->input('preparationTime');
-        $event->client = $request->input('client');
-        $event->mobile = $request->input('mobile');
-        $event->email = $request->input('email');
-        $event->message = $request->input('message');
-        $event->status = "pending";
+        $event->event = $this->request->input('event');
+        $event->date = $this->request->input('date');
+        $event->time = $this->request->input('time');
+        $event->preparation_venue = $this->request->input('preparationVenue');
+        $event->no_of_heads = $this->request->input('noOfHeads');
+        $event->preparation_time = $this->request->input('preparationTime');
+        $event->client = $this->request->input('client');
+        $event->mobile = $this->request->input('mobile');
+        $event->email = $this->request->input('email');
+        $event->message = $this->request->input('message');
 
-        return $event;
+        (new EventDao)->insertOrUpdate($event);
 	}
-}
+
+	}

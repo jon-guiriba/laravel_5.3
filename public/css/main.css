@@ -3,6 +3,10 @@
   font-family: 'Roboto';
 }
 
+textarea {
+   resize: none;
+}
+
 .curtain-bg{
   background-image: url("../img/home-bg.jpg");
   background-size: 140% 100%;
@@ -82,6 +86,10 @@
 	margin-bottom: 40px;
 }
 
+.padding-15{
+  padding: 15px;
+}
+
 .padding-top-20{
   padding-top: 20px;
 }
@@ -140,6 +148,12 @@
     border-color: #d43f3a;
 }
 
+.btn-purple{
+  background-color: #9966ff;
+  border-color: #9966ff;
+}
+
+
 .btn-circle.btn-lg {
   width: 50px;
   height: 50px;
@@ -165,6 +179,11 @@
   height: 125px;
 }
 
-.dz-progress, .dz-upload, .dz-error-message, .dz-success-mark, .dz-error-mark{
+.dz-progress, .dz-upload, .dz-error-message, .dz-success-mark, .dz-error-mark, .dz-size{
   display: none;
+}
+
+.dz-preview{
+  display: inline-block;
+  margin-right: 10px;
 }

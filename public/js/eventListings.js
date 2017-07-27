@@ -8,22 +8,16 @@ $(document).ready(function() {
     });
 
     initDataTable();
-
-
-
 });
 
 function initMap() {
-    console.log("initMap");
 
     $('#eventListingsTable > tbody  > tr > td > div').each(function() {
-    console.log($(this));
-
     var geocoder = new google.maps.Geocoder();
     var venue = "Quezon City";
     var pwet = {lat: -25.363, lng: 131.044};
     var dom = this;
-    console.log(dom.id);
+    
     var map = new google.maps.Map(document.getElementById(dom.id), {
           zoom: 4,
           center: pwet
@@ -31,10 +25,6 @@ function initMap() {
 
     geocoder.geocode( { 'address': venue}, function(results, status) {
       if (status == 'OK') {
-        console.log(venue);
-        console.log(results);
-        console.log(status);
-       
         var coordinates = results[0].geometry.location;
 
         map.setCenter(coordinates);
@@ -44,7 +34,7 @@ function initMap() {
             position: coordinates
         });
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        console.log('Geocode was not successful for the following reason: ' + status);
       }
     });
 

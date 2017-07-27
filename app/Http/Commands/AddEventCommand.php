@@ -2,9 +2,13 @@
 
 namespace App\Http\Commands;
 
-use App\iCommand;
+use App\Infrastructure\Command\iCommand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Event;
+use App\Models\Image;
+use App\Dao\ImageDao;
+use App\Dao\EventDao;
 
 
 class AddEventCommand implements iCommand
@@ -15,31 +19,44 @@ class AddEventCommand implements iCommand
     }
 
 	public function execute(){
-
-        $event = $this->bind($this->request);
-
-	    try { 
-	      $event->save();   
-	    } catch(QueryException $ex){ 
-	      return back();
-	    }
+        $image = $this->saveImageToDb();
+        $this->saveEventToDb($image);
+       
 	}
 
-	private function bind(Request $request){
- 		$event = new Event;
- 		
-        $event->event = $request->input('event');
-        $event->date = $request->input('date');
-        $event->time = $request->input('time');
-        $event->preparation_venue = $request->input('preparationVenue');
-        $event->no_of_heads = $request->input('noOfHeads');
-        $event->preparation_time = $request->input('preparationTime');
-        $event->client = $request->input('client');
-        $event->mobile = $request->input('mobile');
-        $event->email = $request->input('email');
-        $event->message = $request->input('message');
-        $event->status = "pending";
+    private function saveEventToDb($image = null){
+         $event = new Event;
+        
+        $event->event = $this->request->input('event');
+        $event->date = $this->request->input('date');
+        $event->time = $this->request->input('time');
+        $event->preparation_venue = $this->request->input('preparationVenue');
+        $event->no_of_heads = $this->request->input('noOfHeads');
+        $event->preparation_time = $this->request->input('preparationTime');
+        $event->client = $this->request->input('client');
+        $event->mobile = $this->request->input('mobile');
+        $event->email = $this->request->input('email');
+        $event->message = $this->request->input('message');
 
-        return $event;
-	}
+        if($image != null)
+            $event->image_id = $image->id;
+
+
+        (new EventDao())->insertOrUpdate($event);
+
+    }
+
+    private function saveImageToDb(){
+        $file = $this->request->file('image');        
+        if($file == null) return;
+       
+        $image = new Image;
+        $image->data = base64_encode(file_get_contents($file->getRealPath()));
+        $image->mime_type = File::mimeType($file->getRealPath());
+ 
+        (new ImageDao())->insertOrUpdate($image);
+
+        return $image;
+    }
+
 }

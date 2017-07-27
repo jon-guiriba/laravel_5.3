@@ -12,10 +12,9 @@
 */
 Auth::routes();
 
-Route::get('/eventListings', 'HomeController@eventListings')->name('eventListings');
-Route::get('/test', 'HomeController@test')->name('test');
+
 Route::get('/', 'HomeController@home')->name('home');
-Route::post('/testUpload', 'HomeController@testUpload')->name('testUpload');
+Route::get('/eventListings', 'HomeController@eventListings')->name('eventListings');
 
 Route::post('/addEvent', 'EventController@add')->name('addEvent');
 Route::post('/updateEvent', 'EventController@update')->name('updateEvent');
@@ -23,3 +22,5 @@ Route::post('/deleteEvent', 'EventController@delete')->name('deleteEvent');
 Route::get('/getAllEvents', 'EventController@getAllEvents')->name('getAllEvents');
 
 
+Route::get('/albums', 'AlbumController@home')->name('albumHome');
+Route::post('/addAlbum', 'AlbumController@add')->name('testUpload');

@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Infrastructure\Command;
 
 interface iCommand{
 	public function execute();

@@ -45,7 +45,9 @@
   							</select>
   						</td>
   						<td>
-  							<button><span class=""></span></button>
+  							<button class="btn btn-xs btn-purple white center-block">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
   						</td>
             		</tr>
             	@endforeach
@@ -55,3 +57,8 @@
 </div>
 
 @endsection
+
+@section('page-scripts')
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdsdK5dBOJZBEyTDcbYv6Sjqhk_CTl4UY&callback=initMap"></script>
+    <script src="{{asset('js/eventListings.js')}}"></script>
+@stop

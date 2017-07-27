@@ -4,18 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateEventsTable2 extends Migration
+class CreateImagesTable extends Migration
 {
-  /**
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->string('link');
-            $table->string('ticket_type');
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('image_mime_type');
+            // update to longblob
+            $table->binary('image_data');
         });
     }
 
@@ -26,5 +28,6 @@ class UpdateEventsTable2 extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('images');
     }
 }

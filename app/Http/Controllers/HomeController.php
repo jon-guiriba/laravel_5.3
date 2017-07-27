@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use App\Models\Test;
 use App\Models\Event;
+use App\Dao\EventDao;
+use App\Dao\ImageDao;
 
 class HomeController extends Controller
 {
@@ -17,17 +19,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+      
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function home()
-    {
-        return view('calendar');
-    }
 
     /**
      * Show the application dashboard.
@@ -47,7 +41,18 @@ class HomeController extends Controller
      */
     public function eventListings()
     {
-        $events = Event::all();
+        $events = (new EventDao)->getAll();
+        $imageDao = new ImageDao;
+
+        foreach ($events as $event) {
+            $imageId = $event->image_id;
+            if($imageId != null){
+                $image = $imageDao->getById($imageId);
+                $event->image_mime_type = $image->mime_type;
+                $event->image_data = $image->data;
+            }
+        }
+
         return view('eventListings')->with(compact('events'));
     }  
 

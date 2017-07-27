@@ -9,7 +9,7 @@
 				
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" action="{{url('addEvent')}}" method="POST">
+				<form class="form-horizontal" action="{{url('addEvent')}}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					<input  id="id" type="hidden" name="id">
 					<div class="form-group">
@@ -91,7 +91,12 @@
 		 				</div>
 					</div>
 					<div class="row">
-						<button type="submit" class="btn btn-success pull-right margin-right-15">Submit</button>	
+						
+						<button type="submit" class="btn btn-success pull-right margin-right-15 pull-right">Submit</button>
+						<label for="file-upload" class="btn btn-purple pull-right margin-right-15">
+							<span class="glyphicon glyphicon-picture white" style="font-size: 17px"></span>
+						</label>
+						<input id="file-upload" class="hidden" type="file" name="image" data-preview-file-type="any">
 					</div>
 				</form>
 			</div>

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     maxFiles: 20,
     maxFilesize: 3,
     acceptedFiles: 'image/*',
-    addRemoveLinks: false,
+    addRemoveLinks: true,
     init: function() {
         dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
 
@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             formData.append("title", $("#albumForm [name='title']").val());
             formData.append("description", $("#albumForm [name='description']").val());
             formData.append("_token", $("#albumForm [name='_token']").val());
+        });
+
+        this.on("maxfilesexceeded", function(){
+            this.removeFile(file)
         });
     }
   });

@@ -24,8 +24,12 @@ class CreateEventsTable extends Migration
             $table->string('client');
             $table->string('mobile');
             $table->string('email');
-            $table->string('message');
-            $table->string('status');
+            $table->string('message')->nullable();
+            $table->string('status')->nullable();
+            $table->string('link')->nullable();
+            $table->string('ticket_type')->default('free');
+            $table->integer('image_id')->unsigned()->nullable();
+            $table->foreign('image_id')->references('id')->on('images');
             $table->timestamps();
         });
     }

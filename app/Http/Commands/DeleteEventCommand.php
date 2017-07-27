@@ -2,9 +2,10 @@
 
 namespace App\Http\Commands;
 
-use App\iCommand;
+use App\Infrastructure\command\iCommand;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Dao\EventDao;
 
 
 class DeleteEventCommand implements iCommand
@@ -16,9 +17,9 @@ class DeleteEventCommand implements iCommand
 
 	public function execute(){
 	    try { 
-	      Event::find($this->request->input('id'))->delete();   
+	         (new EventDao)->delete($this->request->input('id'));
 	    } catch(QueryException $ex){ 
-	      return back();
+	     
 	    }
 	}
 
