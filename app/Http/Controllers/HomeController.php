@@ -24,7 +24,6 @@ class HomeController extends Controller
 
 
     /**
-     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +34,15 @@ class HomeController extends Controller
     }  
 
     /**
-     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function home()
+    {
+        return view('calendar');
+    }  
+
+    /**
      *
      * @return \Illuminate\Http\Response
      */
@@ -57,7 +64,6 @@ class HomeController extends Controller
     }  
 
     /**
-     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */

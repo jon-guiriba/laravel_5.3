@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Models\Event;
 use App\Models\Image;
+use App\Models\Album;
+use App\Models\AlbumImage;
 use App\Dao\ImageDao;
 use App\Dao\EventDao;
+use App\Dao\AlbumDao;
 use App\Dao\AlbumImageDao;
 
 class AddAlbumCommand implements iCommand
@@ -20,17 +23,20 @@ class AddAlbumCommand implements iCommand
 
 	public function execute(){
         $images = $this->saveImagesToDb();
-        $album = $this->saveAlbumToDb($image);
+        $album = $this->saveAlbumToDb();
+
         $this->saveAlbumImages($album, $images); 
 	}
 
-    private function saveAlbumToDb($image = null){
-         $album = new Album;
+    private function saveAlbumToDb(){
+        $album = new Album;
         
         $album->title = $this->request->input('title');
         $album->description = $this->request->input('description');
 
-        $album = (new AlbumDao())->insertOrUpdate($album);
+        (new AlbumDao())->insertOrUpdate($album);
+
+        return $album;
     }
 
     private function saveImagesToDb(){

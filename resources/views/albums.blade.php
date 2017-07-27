@@ -19,9 +19,9 @@
 	</div>
 	
 </div>
+@foreach($images as $image)
 
-@foreach($albums as $album)
-     <img class="col-xs-1" src="data:{{$album->mimeType}};charset=utf-8;base64,{{$album->image}}">
+     <img class="col-xs-1" src="data:{{$image->mime_type}};charset=utf-8;base64,{{$image->data}}">
 @endforeach
 
 @endsection

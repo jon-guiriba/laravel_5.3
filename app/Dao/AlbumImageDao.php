@@ -4,7 +4,7 @@ namespace App\Dao;
 
 use App\Models\AlbumImage;
 
-class AlbumImagesDao {
+class AlbumImageDao {
 
 	public function getAll()
 	{
@@ -35,5 +35,9 @@ class AlbumImagesDao {
 		} catch (Exception $e) {
 			
 		}
+	}
+
+	public function getAllByAlbumId($albumId){
+		return AlbumImage::where('album_id', $albumId)->get();
 	}
 }

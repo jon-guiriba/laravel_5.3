@@ -179,7 +179,7 @@ textarea {
   height: 125px;
 }
 
-.dz-progress, .dz-upload, .dz-error-message, .dz-success-mark, .dz-error-mark, .dz-size{
+.dz-progress, .dz-upload, .dz-error-message, .dz-success-mark, .dz-error-mark, .dz-size, .dz-filename{
   display: none;
 }
 

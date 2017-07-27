@@ -39,19 +39,19 @@
             var addEventUrl = "{{route('addEvent')}}";
             var updateEventUrl = "{{route('updateEvent')}}";
             var deleteEventUrl = "{{route('deleteEvent')}}";
-            var uploadAlbumUrl = "{{route('testUpload')}}";
+            var uploadAlbumUrl = "{{route('addAlbum')}}";
     </script>
     <div id="app">
         @yield('content')
     </div>
 
     <!-- Late loading Scripts -->
+    @yield('page-scripts')
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('fullcalendar-3.4.0/fullcalendar.js')}}"></script>
     <script src="{{asset('jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
     <script src="{{asset('js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{asset('DataTables/datatables.min.js')}}"></script>
     <script src="{{asset('js/dropzone.js')}}"></script>
-    @yield('page-scripts')
 </body>
 </html>

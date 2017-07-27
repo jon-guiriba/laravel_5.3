@@ -13,8 +13,10 @@
 Auth::routes();
 
 
-Route::get('/', 'HomeController@home')->name('home');
-Route::get('/eventListings', 'HomeController@eventListings')->name('eventListings');
+Route::get('/', function(){
+	return view('calendar');
+});
+Route::get('/eventListings','HomeController@eventListings')->name('eventListings');
 
 Route::post('/addEvent', 'EventController@add')->name('addEvent');
 Route::post('/updateEvent', 'EventController@update')->name('updateEvent');
@@ -23,4 +25,4 @@ Route::get('/getAllEvents', 'EventController@getAllEvents')->name('getAllEvents'
 
 
 Route::get('/albums', 'AlbumController@home')->name('albumHome');
-Route::post('/addAlbum', 'AlbumController@add')->name('testUpload');
+Route::post('/addAlbum', 'AlbumController@add')->name('addAlbum');
