@@ -58,6 +58,8 @@ class AddAlbumCommand implements iCommand
     }
 
     private function saveAlbumImages($album, $images){
+        if($images == null) return;
+        
         foreach ($images as $image) {
             $albumImage = new AlbumImage;
 

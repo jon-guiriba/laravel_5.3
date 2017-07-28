@@ -12,13 +12,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     acceptedFiles: 'image/*',
     addRemoveLinks: true,
     init: function() {
-        dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+        dz = this; // Makes sure that 'this' is understood inside the functions below.
 
         document.getElementById("albumFormSubmit").addEventListener("click", function(e) {
             // Make sure that the form isn't actually being sent.
+            if (dz.getQueuedFiles().length < 5) {
+                alert('At least 5 images per album');
+            }
+
             e.preventDefault();
             e.stopPropagation();
-            dzClosure.processQueue();
+            dz.processQueue();
         });
         //send all the form data along with the files:
         this.on("sendingmultiple", function(data, xhr, formData) {

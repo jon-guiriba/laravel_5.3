@@ -10,9 +10,9 @@
 			  <h6 class="text-danger">Note: At least 5 photos per album, and maximum of 3MB per image is allowed</h6>
 	  		  <div class="dropzone padding-15" style="width: 100%; min-height:200px; border: 1px dotted"></div>
 			  <label> Album Title</label>
-			  <input class="form-control" type="text" name="title" placeholder="Your title">
+			  <input class="form-control" type="text" name="title" placeholder="Your title" required>
 			  <label> Album Description</label>
-			  <textarea class="form-control" type="text" name="description" placeholder="Your album description" rows="2" resizable=false></textarea>
+			  <textarea class="form-control" type="text" name="description" placeholder="Your album description" rows="2" resizable=false required></textarea>
 			  <button class="btn btn-purple margin-top-25 white" id="albumFormSubmit" type="submit">Submit</button>
 			</form>
 		</div>

@@ -53,8 +53,9 @@ class HomeController extends Controller
 
         foreach ($events as $event) {
             $imageId = $event->image_id;
-            if($imageId != null){
-                $image = $imageDao->getById($imageId);
+            $image = $imageDao->getById($imageId);
+           
+            if($image != null){
                 $event->image_mime_type = $image->mime_type;
                 $event->image_data = $image->data;
             }

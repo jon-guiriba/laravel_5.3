@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventRequest;
 use Illuminate\Http\Request;
 use App\Http\Query\GetAlbumWithImagesQuery;
+use App\Http\Commands\AddAlbumCommand;
 use App\Models\Album;
 use App\Dao\ImageDao;
 use App\Dao\AlbumDao;
