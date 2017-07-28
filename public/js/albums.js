@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.on("maxfilesexceeded", function(){
             this.removeFile(file)
         });
+
+        this.on("queuecomplete", function (file) {
+            location.reload();
+        });
     }
   });
 });

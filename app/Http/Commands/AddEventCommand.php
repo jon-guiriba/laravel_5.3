@@ -14,8 +14,10 @@ use App\Dao\EventDao;
 class AddEventCommand implements iCommand
 {
 
-    public function __construct(Request $request){
-    	$this->request = $request;
+    public function __construct(ImageDao $imageDao, EventDao $eventDao, Request $request){
+        $this->imageDao = $imageDao;
+        $this->eventDao = $eventDao;
+        $this->request = $request;
     }
 
 	public function execute(){
@@ -42,7 +44,7 @@ class AddEventCommand implements iCommand
             $event->image_id = $image->id;
 
 
-        (new EventDao())->insertOrUpdate($event);
+        $this->eventDao->insertOrUpdate($event);
 
     }
 
@@ -54,7 +56,7 @@ class AddEventCommand implements iCommand
         $image->data = base64_encode(file_get_contents($file->getRealPath()));
         $image->mime_type = File::mimeType($file->getRealPath());
  
-        (new ImageDao())->insertOrUpdate($image);
+        $this->imageDao->insertOrUpdate($image);
 
         return $image;
     }

@@ -19,10 +19,19 @@
 	</div>
 	
 </div>
-@foreach($images as $image)
-
-     <img class="col-xs-1" src="data:{{$image->mime_type}};charset=utf-8;base64,{{$image->data}}">
+@foreach($albums as $album)
+	<div class="row">
+		<h4 class="col-xs-12">Title: {{$album->title}}</h4>
+		<h5 class="col-xs-12">Description: {{$album->description}}</h5>
+		@foreach($album->images as $image)
+			@if(is_null($image)) 
+				@continue
+			@endif
+			<img class="col-xs-1" src="data:{{$image->mime_type}};charset=utf-8;base64,{{$image->data}}">
+		@endforeach	
+	</div>
 @endforeach
+
 
 @endsection
 

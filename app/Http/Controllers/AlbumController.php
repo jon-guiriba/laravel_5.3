@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
 use Illuminate\Http\Request;
-use App\Http\Commands\AddEventCommand;
-use App\Http\Commands\AddAlbumCommand;
+use App\Http\Query\GetAlbumWithImagesQuery;
 use App\Models\Album;
 use App\Dao\ImageDao;
+use App\Dao\AlbumDao;
 use App\Dao\AlbumImageDao;
-use Illuminate\Database\Eloquent\Collection;
 
 class AlbumController extends Controller
 {
@@ -18,9 +17,10 @@ class AlbumController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        
+    public function __construct(AlbumDao $albumDao, ImageDao $imageDao, AlbumImageDao $albumImageDao){
+        $this->albumDao = $albumDao;
+        $this->imageDao = $imageDao;
+        $this->albumImageDao = $albumImageDao;
     }
 
     /**
@@ -29,29 +29,11 @@ class AlbumController extends Controller
      */
     public function home()
     {
-        $imageDao = new ImageDao;
-        $albumImageDao = new AlbumImageDao;
-        $albums = Album::all();
 
+        $albums = (new GetAlbumWithImagesQuery($this->albumDao, $this->imageDao, $this->albumImageDao))->execute();
+    
 
-        $images =  new Collection;
-        foreach ($albums as  $album) {
-            $albumImages = $albumImageDao->getAllByAlbumId($album->id);
-          // var_dump($albumImages);
-            foreach ($albumImages as $albumImage) {
-                $images->push($imageDao->getById($albumImage->id));
-
-            }
-        }
- // var_dump(compact('images'));
- // var_dump(compact('albums'));
- // var_dump($albums);
- // var_dump($images);
- //            die();
-       // 
-       
-
-        return view('albums')->with(compact('images'));
+        return view('albums')->with(compact('albums'));
     }
 
     /**

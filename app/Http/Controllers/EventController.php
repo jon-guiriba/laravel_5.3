@@ -9,6 +9,7 @@ use App\Http\Commands\UpdateEventCommand;
 use App\Http\Commands\DeleteEventCommand;
 use App\Models\Event;
 use App\Dao\ImageDao;
+use App\Dao\EventDao;
 
 class EventController extends Controller
 {
@@ -17,9 +18,9 @@ class EventController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        
+    public function __construct(ImageDao $imageDao, EventDao $eventDao){
+        $this->imageDao = $imageDao;
+        $this->eventDao = $eventDao;
     }
 
     /**
@@ -27,7 +28,7 @@ class EventController extends Controller
     */
     public function add(EventRequest $request)
     {
-       (new AddEventCommand($request))->execute();
+       (new AddEventCommand($this->imageDao, $this->eventDao, $request))->execute();
         return back(); 
     }
 
@@ -36,7 +37,7 @@ class EventController extends Controller
     */
     public function update(EventRequest $request)
     {
-       (new UpdateEventCommand($request))->execute();
+       (new UpdateEventCommand($this->imageDao, $this->eventDao, $request))->execute();
         return back(); 
     }
 
@@ -45,12 +46,12 @@ class EventController extends Controller
     */
     public function delete(EventRequest $request)
     {
-       (new DeleteEventCommand($request))->execute();
+       (new DeleteEventCommand($this->imageDao, $this->eventDao, $request))->execute();
         return back(); 
     }
 
     public function getAllEvents(Request $request)
     {
-        return Event::all();
+        return $this->eventDao->getAll();
     }
 }

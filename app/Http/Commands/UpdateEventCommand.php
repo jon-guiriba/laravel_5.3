@@ -6,12 +6,15 @@ use App\Infrastructure\command\iCommand;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Dao\EventDao;
+use App\Dao\ImageDao;
 
 
 class UpdateEventCommand implements iCommand
 {
 
-    public function __construct(Request $request){
+    public function __construct(ImageDao $imageDao,EventDao $eventDao, Request $request){
+        $this->imageDao = $imageDao;
+        $this->eventDao = $eventDao;
     	$this->request = $request;
     }
 
@@ -30,7 +33,7 @@ class UpdateEventCommand implements iCommand
         $event->email = $this->request->input('email');
         $event->message = $this->request->input('message');
 
-        (new EventDao)->insertOrUpdate($event);
+        $this->eventDao->insertOrUpdate($event);
 	}
 
 	}
