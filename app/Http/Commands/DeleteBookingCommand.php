@@ -4,23 +4,23 @@ namespace App\Http\Commands;
 
 use App\Infrastructure\command\iCommand;
 use Illuminate\Http\Request;
-use App\Models\Event;
-use App\Dao\EventDao;
+use App\Models\Booking;
+use App\Dao\BookingDao;
 use App\Dao\ImageDao;
 
 
-class DeleteEventCommand implements iCommand
+class DeleteBookingCommand implements iCommand
 {
 
-    public function __construct(ImageDao $imageDao,EventDao $eventDao, Request $request){
+    public function __construct(ImageDao $imageDao,BookingDao $bookingDao, Request $request){
         $this->imageDao = $imageDao;
-        $this->eventDao = $eventDao;
+        $this->bookingDao = $bookingDao;
     	$this->request = $request;
     }
 
 	public function execute(){
 	    try { 
-	         $this->eventDao->delete($this->request->input('id'));
+	         $this->bookingDao->delete($this->request->input('id'));
 	    } catch(QueryException $ex){ 
 	     
 	    }

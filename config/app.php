@@ -166,7 +166,6 @@ return [
         /*
          * Package Service Providers...
          */
-
         //
 
         /*
@@ -177,6 +176,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        //Rateable
+        willvincent\Rateable\RateableServiceProvider::class,
 
     ],
 

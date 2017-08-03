@@ -4,7 +4,6 @@ namespace App\Http\Query;
 
 use App\Infrastructure\command\iCommand;
 use Illuminate\Http\Request;
-use App\Models\Event;
 use App\Dao\AlbumDao;
 use App\Dao\ImageDao;
 use App\Dao\AlbumImageDao;

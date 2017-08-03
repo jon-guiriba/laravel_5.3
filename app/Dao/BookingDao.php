@@ -2,17 +2,17 @@
 
 namespace App\Dao;
 
-use App\Models\Event;
+use App\Models\Booking;
 use App\Models\Image;
 
-class EventDao {
+class BookingDao {
 
 	public function getAll(){
-		return Event::all();
+		return Booking::all();
 	}
 
 	public function getAllForJson(){
-		return (new Event)->select(
+		return (new Booking)->select(
 				'id as cid',
 				'event as evt',
 				'date as dat',
@@ -30,10 +30,10 @@ class EventDao {
 
 	public function getById($id)
 	{
-		return Event::find($id);
+		return Booking::find($id);
 	}
 
-	public function insertOrUpdate(Event $event)
+	public function insertOrUpdate(Booking $booking)
 	{
 		try {
 			return $booking->save();
@@ -43,15 +43,14 @@ class EventDao {
 		return false;
 	}
 
-	public function delete($id)
-	{
+	public function delete($id){
 		try {
-			$event = Event::find($id);
+			$booking = Booking::find($id);
 			
-			if($event->image_id != null)
-				Image::find($event->image_id)->delete();
+			if($booking->image_id != null)
+				Image::find($booking->image_id)->delete();
 
-			$event->delete();
+			$booking->delete();
 		} catch (Exception $e) {
 			
 		}

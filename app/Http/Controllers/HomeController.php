@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use App\Models\Test;
-use App\Models\Event;
-use App\Dao\EventDao;
+use App\Models\Booking;
+use App\Dao\BookingDao;
 use App\Dao\ImageDao;
 
 class HomeController extends Controller
@@ -48,7 +48,7 @@ class HomeController extends Controller
      */
     public function eventListings()
     {
-        $events = (new EventDao)->getAll();
+        $events = (new BookingDao)->getAll();
         $imageDao = new ImageDao;
 
         foreach ($events as $event) {

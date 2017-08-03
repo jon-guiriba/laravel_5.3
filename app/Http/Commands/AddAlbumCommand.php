@@ -5,12 +5,10 @@ namespace App\Http\Commands;
 use App\Infrastructure\Command\iCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use App\Models\Event;
 use App\Models\Image;
 use App\Models\Album;
 use App\Models\AlbumImage;
 use App\Dao\ImageDao;
-use App\Dao\EventDao;
 use App\Dao\AlbumDao;
 use App\Dao\AlbumImageDao;
 

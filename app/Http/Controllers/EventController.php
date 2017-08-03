@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EventRequest;
 use Illuminate\Http\Request;
-use App\Http\Commands\AddEventCommand;
-use App\Http\Commands\UpdateEventCommand;
-use App\Http\Commands\DeleteEventCommand;
-use App\Models\Event;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\File;
+use App\Models\Test;
+use App\Models\Booking;
+use App\Dao\BookingDao;
 use App\Dao\ImageDao;
-use App\Dao\EventDao;
 
 class EventController extends Controller
 {
@@ -18,40 +17,29 @@ class EventController extends Controller
      *
      * @return void
      */
-    public function __construct(ImageDao $imageDao, EventDao $eventDao){
-        $this->imageDao = $imageDao;
-        $this->eventDao = $eventDao;
+    public function __construct()
+    {
+      
     }
 
     /**
-    * @return \Illuminate\Http\Response
-    */
-    public function add(EventRequest $request)
-    {
-       (new AddEventCommand($this->imageDao, $this->eventDao, $request))->execute();
-        return back(); 
-    }
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function home(){
+        $events = (new BookingDao)->getAll();
+        $imageDao = new ImageDao;
 
-    /**
-    * @return \Illuminate\Http\Response
-    */
-    public function update(EventRequest $request)
-    {
-       (new UpdateEventCommand($this->imageDao, $this->eventDao, $request))->execute();
-        return back(); 
-    }
+        foreach ($events as $event) {
+            $imageId = $event->image_id;
+            $image = $imageDao->getById($imageId);
+           
+            if($image != null){
+                $event->image_mime_type = $image->mime_type;
+                $event->image_data = $image->data;
+            }
+        }
 
-    /**
-    * @return \Illuminate\Http\Response
-    */
-    public function delete(EventRequest $request)
-    {
-       (new DeleteEventCommand($this->imageDao, $this->eventDao, $request))->execute();
-        return back(); 
-    }
-
-    public function getAllEvents(Request $request)
-    {
-        return $this->eventDao->getAll();
-    }
+        return view('eventListings')->with(compact('events'));
+    }  
 }

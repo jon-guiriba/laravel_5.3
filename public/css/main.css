@@ -187,3 +187,15 @@ textarea {
   display: inline-block;
   margin-right: 10px;
 }
+
+#bookingModal .form-control[readonly]{
+  background-color: initial;
+}
+
+.resize-none{
+  resize: none;
+  } 
+
+.simple-border{
+  border: 1px solid black; 
+}

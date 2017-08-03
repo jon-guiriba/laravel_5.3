@@ -7,14 +7,14 @@
 			<tr>
 				<th>#</th>
 				<th>Event Image</th>
+				<th>Venue</th>
 				<th>Event</th>
 				<th>Date</th>
 				<th>Time</th>
-				<th>Venue</th>
 				<th>Link</th>
-				<th>Ticket</th>
-				<th>Action</th>
-			</tr>
+                <th>Price</th>
+			    <th>Ticket</th>
+            </tr>
 		</thead>
 		<tbody>
 			@if ($events)
@@ -26,17 +26,24 @@
 	            				<img class="img-normal" src="data:{{$event->image_mime_type}};charset=utf-8;base64,{{$event->image_data}}">
 	            			@endif
             			</td>
-            			<td>{{$event->event}}</td>
+                        <td>
+                            <input type="hidden" name="venue" value="{{$event->preparation_venue}}">
+                            <div id="venueMap{{$i}}" class="map-normal"></div>
+                        </td>
+            			<td>
+                            <input class="form-control" type="text" name="time" value="{{$event->event}}"> 
+                        </td>
             			<td>
             				<input class="form-control" type="text" name="date" value="{{$event->date}}"></td>
             			<td>
             				<input class="form-control" type="text" name="time" value="{{$event->time}}"> 
             			</td>
             			<td>
-            				<input type="hidden" name="venue" value="{{$event->preparation_venue}}">
-            				<div id="venueMap{{$i}}" class="map-normal"></div>
-            			</td>
-            			<td><a class="btn btn-success" href="{{$event->link}}">Link</a></td>
+                            <input class="form-control" name="link" value="{{$event->link}}">
+                        </td>
+                        <td>
+                            <input class="form-control" name="price" value="{{$event->price}}">
+                        </td>
             			<td>
             				<select class="form-control">
 							    <option value="free"  {{$event->ticket_type === 'free' ? 'selected' : '' }}>Free</option>
@@ -44,16 +51,15 @@
 							    <option value="buy_online" {{$event->buy_online === 'free' ? 'selected' : '' }}>Buy Online</option>
   							</select>
   						</td>
-  						<td>
-  							<button class="btn btn-xs btn-purple white center-block">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                            </button>
-  						</td>
             		</tr>
             	@endforeach
             @endif
 		</tbody>
 	</table>
+    <a id="addEventButton" class="btn btn-success btn-circle btn-lg fixed-lr" data-toggle="modal" data-target="#addEventModal">
+        <i class="glyphicon glyphicon-plus"></i>
+    </a>
+    @include('modals.addEventModal')
 </div>
 
 @endsection

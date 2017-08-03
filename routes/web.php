@@ -16,13 +16,14 @@ Auth::routes();
 Route::get('/', function(){
 	return view('calendar');
 });
-Route::get('/eventListings','HomeController@eventListings')->name('eventListings');
+Route::get('/eventListings','EventController@home')->name('eventListings');
 
-Route::post('/addEvent', 'EventController@add')->name('addEvent');
-Route::post('/updateEvent', 'EventController@update')->name('updateEvent');
-Route::post('/deleteEvent', 'EventController@delete')->name('deleteEvent');
-Route::get('/getAllEvents', 'EventController@getAllEvents')->name('getAllEvents');
+Route::get('/calendar', 'BookingController@home');
 
+Route::post('/addBooking', 'BookingController@add')->name('addBooking');
+Route::post('/updateBooking', 'BookingController@update')->name('updateBooking');
+Route::post('/deleteBooking', 'BookingController@delete')->name('deleteBooking');
+Route::post('/getAllBookings', 'BookingController@getAllBookings')->name('getAllEvents');
 
 Route::get('/albums', 'AlbumController@home')->name('albumHome');
 Route::post('/addAlbum', 'AlbumController@add')->name('addAlbum');

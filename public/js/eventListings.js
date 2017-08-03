@@ -5,10 +5,24 @@ $(document).ready(function() {
 
     $('#eventListingsTable input[name=time]').datetimepicker({
         format: 'LT'
+    });    
+
+    $('#addEventModal input[name=date]').datetimepicker({
+        format: 'D MMM, Y'
+    });
+
+    $('#addEventModal input[name=time]').datetimepicker({
+        format: 'LT'
     });
 
     initDataTable();
 });
+
+function initAddEventFab(){
+      $("#addEventButton" ).click(function() {
+      $("#addEventModal form").trigger('reset');
+    });
+ }
 
 function initMap() {
 

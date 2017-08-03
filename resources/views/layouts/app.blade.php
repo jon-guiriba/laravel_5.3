@@ -36,10 +36,11 @@
 </head>
 <body>
     <script type="text/javascript">
-            var addEventUrl = "{{route('addEvent')}}";
-            var updateEventUrl = "{{route('updateEvent')}}";
-            var deleteEventUrl = "{{route('deleteEvent')}}";
+            var addBookingtUrl = "{{route('addBooking')}}";
+            var updateBookingUrl = "{{route('updateBooking')}}";
+            var deleteBookingUrl = "{{route('deleteBooking')}}";
             var uploadAlbumUrl = "{{route('addAlbum')}}";
+            var csrf_token = "{{csrf_token()}}";
     </script>
     <div id="app">
         @yield('content')
